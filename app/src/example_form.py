@@ -1,4 +1,5 @@
 import copy
+import requests
 from .dict_templates import DictTemplate
 
 
@@ -22,11 +23,15 @@ class ErtekeloForm:
     def create_form_questions(self, player_number, index_int, question_title="", is_image=True):
         if isinstance(player_number, int):
             question_title = f"#{player_number}"
-        image = self.create_image_item(f"https://pena-form-players.s3.eu-central-1.amazonaws.com/{player_number}.png")
+        player_url = f"https://pena-form-players.s3.eu-central-1.amazonaws.com/{player_number}.png"
+        r = requests.get(player_url)
         question_item = copy.deepcopy(DictTemplate.question_item)
         question_item["title"] = question_title
-        if is_image:
-            question_item["questionItem"]["image"] = image["imageItem"]["image"]
+
+        if r.status_code == 200:
+            image = self.create_image_item(player_url)
+            if is_image:
+                question_item["questionItem"]["image"] = image["imageItem"]["image"]
 
         self.create_item_func(question_item, index_int)
 

@@ -18,3 +18,7 @@ __pycache__/
 # Ignored by the build system
 /setup.cfg
 copy_to_linux.bat
+app/tmp/client_secret_form_creator.json
+app/tmp/pena_form_service_account.json
+app.yaml
+app/.env
