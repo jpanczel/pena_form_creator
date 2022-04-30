@@ -3,3 +3,5 @@ latest Real Madrid game on a 1-10 scale.
 
 The application is built with Flask, and is using the currently (04.2022) BETA version of Google FORMS API. 
 The application also uses S3 to host pictures related to the players and teams. 
+
+The api is deployed to Heroku. The application only uses free tier services.
